@@ -1,24 +1,27 @@
-package com.ivoronline.springboot_relationships_manytoone_jointable.controllers;
+package com.ivoronline.springboot_relationships_manytomany_jointable.controllers;
 
-import com.ivoronline.springboot_relationships_manytoone_jointable.entities.Author;
-import com.ivoronline.springboot_relationships_manytoone_jointable.entities.Book;
-import com.ivoronline.springboot_relationships_manytoone_jointable.repositories.AuthorRepository;
+import com.ivoronline.springboot_relationships_manytomany_jointable.entities.Author;
+import com.ivoronline.springboot_relationships_manytomany_jointable.entities.Book;
+import com.ivoronline.springboot_relationships_manytomany_jointable.repositories.AuthorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
-@Controller
+@RestController
 public class MyController {
 
-  @Autowired
-  AuthorRepository authorRepository;
+  @Autowired AuthorRepository authorRepository;
 
-  @ResponseBody
-  @RequestMapping("/addAuthor")
-  public String addAuthor() {
+  //===========================================================================
+  // ADD AUTHORS BOOKS
+  //===========================================================================
+  @RequestMapping("/AddAuthorsBooks")
+  public String addAuthorsBooks() {
 
     //CREATE BOOKS
     Book    book1        = new Book();
@@ -51,6 +54,28 @@ public class MyController {
 
     //RETURN SOMETHING TO BROWSER
     return "Author & Books were stored into DB";
+
+  }
+
+  //===========================================================================
+  // GET AUTHORS BOOKS
+  //===========================================================================
+  @RequestMapping("GetAuthorsBooks")
+  public String getAuthorsBooks() {
+
+    //GET AUTHOR
+    Author author = authorRepository.findById(1).get();
+
+    //GET BOOKS
+    String   books         = "";
+    Iterator booksIterator = author.books.iterator();
+    while(booksIterator.hasNext()) {
+      Book book = (Book) booksIterator.next();
+      books += book.title + ", ";
+    }
+
+    //RETURN SOMETHING
+    return author.name + " has written: " + books;
 
   }
 

@@ -1,4 +1,4 @@
-package com.ivoronline.springboot_relationships_manytoone_jointable.entities;
+package com.ivoronline.springboot_relationships_manytomany_jointable.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

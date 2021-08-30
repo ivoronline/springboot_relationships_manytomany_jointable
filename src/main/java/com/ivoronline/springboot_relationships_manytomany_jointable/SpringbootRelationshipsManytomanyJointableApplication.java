@@ -1,13 +1,13 @@
-package com.ivoronline.springboot_relationships_manytoone_jointable;
+package com.ivoronline.springboot_relationships_manytomany_jointable;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootRelationshipsManytooneJointableApplication {
+public class SpringbootRelationshipsManytomanyJointableApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringbootRelationshipsManytooneJointableApplication.class, args);
+    SpringApplication.run(SpringbootRelationshipsManytomanyJointableApplication.class, args);
   }
 
 }
